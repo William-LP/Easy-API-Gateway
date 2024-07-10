@@ -9,5 +9,3 @@ Easy API Gateway makes it easy for you to manage your API keys, from generation 
 
 
 ## API Keys
-
-Foo bar
