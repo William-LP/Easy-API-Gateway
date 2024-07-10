@@ -1,0 +1,7 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: Easy API Gateway
+
+module:
+  imports:
+    - path: github.com/imfing/hextra
