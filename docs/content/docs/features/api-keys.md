@@ -3,10 +3,9 @@ title: API Keys
 weight: 1
 ---
 
-Hugo generates static websites, allowing for flexible hosting options.
-This page provides guides for deploying your Hextra site on various platforms.
+Easy API Gateway makes it easy for you to manage your API keys, from generation to usage report.
 
 <!--more-->
 
 
-## Rate Limiting
+## API Keys
