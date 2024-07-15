@@ -3,6 +3,7 @@ title: stuff
 weight: 5
 prev: /docs/getting-started
 next: /docs/guide/organize-files
+draft: yes
 sidebar:
   open: false
 ---
