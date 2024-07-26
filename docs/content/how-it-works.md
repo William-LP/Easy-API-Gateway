@@ -1,24 +1,19 @@
 ---
 title: How it works
-weight: 1
+weight: 2
+draft: false
+breadcrumbs: false
 ---
 
-## Quick Start from Template
+## Parapluie is a proxy
 
-{{< icon "github" >}}&nbsp;[imfing/hextra-starter-template](https://github.com/imfing/hextra-starter-template)
+Therefore, it will intercept all requests made to your APIs and forwarding them back to your application if necessary.
 
-You could quickly get started by using the above template repository.
+![architecture](/archi.png)
 
-<img src="https://docs.github.com/assets/cb-77734/mw-1440/images/help/repository/use-this-template-button.webp" width="500">
+## 2 extra HTTP requests at most
 
-We have provided a [GitHub Actions workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) which can help automatically build and deploy your site to GitHub Pages, and host it for free.
-For more options, check out [Deploy Site](../guide/deploy-site).
-
-[🌐 Demo ↗](https://imfing.github.io/hextra-starter-template/)
-
-## Start as New Project
-
-There are two main ways to add the Hextra theme to your Hugo project:
+In case of a query to be forwarded to your app, this will add two extra HTTP query
 
 1. **Hugo Modules (Recommended)**: The simplest and recommended method. [Hugo modules](https://gohugo.io/hugo-modules/) let you pull in the theme directly from its online source. Theme is downloaded automatically and managed by Hugo.
 

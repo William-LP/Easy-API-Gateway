@@ -1,10 +1,11 @@
 ---
 title: Getting Started
 weight: 3
-next: /docs/features
+next: features
+breadcrumbs: false
 ---
 
-## Quick Start from Template
+## Quick Start 
 
 {{< icon "github" >}}&nbsp;[imfing/hextra-starter-template](https://github.com/imfing/hextra-starter-template)
 

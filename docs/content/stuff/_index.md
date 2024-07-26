@@ -4,6 +4,8 @@ weight: 5
 prev: /docs/getting-started
 next: /docs/guide/organize-files
 draft: yes
+cascade:
+  type: docs
 sidebar:
   open: false
 ---

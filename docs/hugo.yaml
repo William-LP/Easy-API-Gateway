@@ -1,17 +1,60 @@
 baseURL: https://example.org/
-languageCode: en-us
-title: Easy API Gateway
+title: Parapluie
+
+menu:
+  main:
+    # - identifier: documentation
+    #   name: Documentation
+    #   pageRef: /docs
+    #   weight: 1
+    - name: Search
+      weight: 1
+      params:
+        type: search
+    # - name: GitHub
+    #   weight: 3
+    #   url: "https://github.com/William-LP/Easy-API-Gateway"
+    #   params:
+    #     icon: github
+
+  # sidebar:
+  #   - identifier: more
+  #     name: More
+  #     params:
+  #       type: separator
+  #     weight: 1
+  #   - identifier: about
+  #     name: "About"
+  #     pageRef: "/about"
+  #     weight: 2
+  #   - identifier: hugoDocs
+  #     name: "Hugo Docs ↗"
+  #     url: "https://gohugo.io/documentation/"
+  #     weight: 3
 
 params:
+  navbar:
+    displayTitle: true
+    displayLogo: true
+    logo:
+      path: images/emojione-umbrella.svg
+      dark: images/emojione-umbrella.svg
+      link: /
+      # width: 40
+      # height: 20
   comments:
     enable: true
     type: giscus
-
     giscus:
       repo: William-LP/Easy-API-Gateway
       repoId: R_kgDOMUQfpA
       category: General
       categoryId: DIC_kwDOMUQfpM4CgyxH
+      
+
+  editURL:
+    enable: true
+    base: "https://github.com/William-LP/Easy-API-Gateway/edit/main/docs/content"      
 
 
 module:
