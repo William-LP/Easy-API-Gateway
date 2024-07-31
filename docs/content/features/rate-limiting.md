@@ -1,6 +1,7 @@
 ---
 title: Rate Limiting
 weight: 3
+draft: true
 ---
 
 Hugo generates static websites, allowing for flexible hosting options.

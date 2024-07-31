@@ -8,12 +8,11 @@ breadcrumbs: false
 
 👋 Hello! Welcome to Parapluie documentation!
 
-<!--more-->
 
 ## What is Parapluie?
 
-Parapluie (French word for "umbrella", pronounced /pa.ʁa.plɥi/) is the simplest way to protect your APIs when building an early stage product.
-Designed for simplicity, it provides out-of-the-box features and flexibility to meet various requirements.
+Parapluie (French word for "umbrella", pronounced /pa.ʁa.plɥi/) is the simplest way to manage your APIs.
+Designed with simplicity in mind, it provides out-of-the-box features and flexibility to meet various requirements.
 
 ## Features
 
@@ -26,9 +25,9 @@ Designed for simplicity, it provides out-of-the-box features and flexibility to 
 
 ## Questions or Feedback?
 
-{{< callout emoji="❓" >}}
-  Parapluie is still in active development.
-  Have a question or feedback? Feel free to [open an issue](https://github.com/William-LP/Easy-API-Gateway/issues)!
+{{< callout type="info" >}}
+  Parapluie is in active development.
+  Do you have a question or feedback? Please [open an issue](https://github.com/William-LP/Easy-API-Gateway/issues)!
 {{< /callout >}}
 
 ## Next

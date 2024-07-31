@@ -1,11 +1,177 @@
 ---
 title: API Keys
+draft: false
 weight: 1
 ---
 
-Parapluie makes it easy for you to manage your API keys, from generation to usage report.
+Parapluie simplifies the management of your API keys.
 
-<!--more-->
+An API key is a confidential token that must be included in every request to Parapluie, formatted as the header: `{ Authorization: Bearer api_key_xxx }`.
+
+You can assign various [rate limits](/features/rate-limiting) to your API keys. These keys can be distributed to your customers for use with your API, or used directly in your frontend application to safeguard your backend infrastructure.
+
+## Prerequisite
+
+Before performing any of the following action you must have :
+- A parapluie [root token](/authentication)
+
+## Key management
+
+For sake of documentation clarity, parapluie's root token has been exported as an environement variable :
+ `export PARAPLUIE_ROOT_TOKEN=<root_token_xxx>`
+
+### Add an API keys
+
+{{< tabs items="cURL" >}}
+  {{< tab >}}
+  ```bash
+  curl -X POST https://parapluie.io/api-keys/create \ 
+    --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}' \
+    --data '{"name":"api key for consumer XYZ"}'
+  ```
+
+  The following fields will be computed and returned :
+
+  ```json
+{
+  "id":"xxx",
+  "name":"api key for consumer XYZ",
+  "secret":"@Str0nGS€cr3T",
+  "createdAt":"2024-07-30 16:20:45"
+}
+  ```
+    {{< /tab >}}
 
 
-## API Keys
+
+{{< /tabs >}}
+
+
+### List API keys
+
+{{< tabs items="cURL" >}}
+  {{< tab >}}
+  
+```bash
+  curl -X GET https://parapluie.io/api-keys \ 
+    --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}'
+```
+
+This will list the API keys with theirs `id`, `name`, `createdAt` and `lastUpdated` :
+
+  ```json
+{
+  "apiKeys" : [
+      {
+      "id":"xxx",
+      "name":"direct access for consumer XYZ",
+      "createdAt":"2024-07-30T16:20:45Z",
+      "lastUpdated": "2024-07-31T12:00:00Z",
+      },
+      {
+      "id":"abc",
+      "name":"Frontend app",
+      "createdAt":"2024-07-28T15:42:10Z",
+      "lastUpdated": "2024-07-28T15:42:10Z",
+      }
+    ]
+}
+
+  ```
+    {{< /tab >}}
+
+
+
+{{< /tabs >}}
+
+
+### API key report
+
+{{< tabs items="cURL" >}}
+  {{< tab >}}
+  ```bash
+  API_KEY_ID="xxx"
+  curl -X GET https://parapluie.io/api-keys/$API_KEY_ID \
+    --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}'
+  ```
+
+    The following data should be returned :
+
+  ```json
+{
+  "id":"xxx",
+  "name":"my api key",
+  "secret":"@Str0nGS€cr3T",
+  "createdAt":"2024-07-30T16:20:45Z",
+  "lastUpdated": "2024-07-31T12:00:00Z",
+  "usage": {
+      "totalRequests": 1200,
+      "successfulRequests": 1180,
+      "failedRequests": 20,
+      "rateLimits": {
+        "limit": 1000,
+        "remaining": 800,
+        "resetTime": "2024-08-01T00:00:00Z"
+      },
+      "endpoints": [
+        {
+          "endpoint": "/v1/resource1",
+          "requests": 600,
+          "successful": 590,
+          "failed": 10,
+          "averageResponseTimeMs": 150
+        },
+        {
+          "endpoint": "/v1/resource2",
+          "requests": 600,
+          "successful": 590,
+          "failed": 10,
+          "averageResponseTimeMs": 200
+        }
+      ],
+      "usageByCustomer": [
+        {
+          "customerId": "customer_123",
+          "requests": 500,
+          "successful": 495,
+          "failed": 5
+        },
+        {
+          "customerId": "customer_456",
+          "requests": 700,
+          "successful": 685,
+          "failed": 15
+        }
+      ]
+    }
+}
+  ```
+    {{< /tab >}}
+
+
+
+{{< /tabs >}}
+
+### Delete an API keys
+
+{{< tabs items="cURL" >}}
+  {{< tab >}}
+  ```bash
+  API_KEY_ID="xxx"
+  curl -X DELETE https://parapluie.io/api-keys/$API_KEY_ID \
+    --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}'
+  ```
+
+A confirmation message will be returned : 
+
+  ```json
+{
+"id":"xxx",
+"message":"API key has been successfully deleted",
+}
+  ```
+  {{< /tab >}}
+
+
+
+{{< /tabs >}}

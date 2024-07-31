@@ -3,6 +3,7 @@ title: Getting Started
 weight: 3
 next: features
 breadcrumbs: false
+draft: yes
 ---
 
 ## Quick Start 

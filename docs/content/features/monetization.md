@@ -1,5 +1,6 @@
 ---
-title: Price
+title: Monetization
+draft: true
 weight: 6
 ---
 
@@ -9,4 +10,4 @@ This page provides guides for deploying your Hextra site on various platforms.
 <!--more-->
 
 
-## Rate Limiting
+## Monetization

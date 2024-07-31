@@ -1,6 +1,7 @@
 ---
 title: Authentication
 weight: 2
+draft: yes
 ---
 
 Hugo generates static websites, allowing for flexible hosting options.
