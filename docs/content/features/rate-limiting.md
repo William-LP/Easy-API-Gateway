@@ -20,6 +20,33 @@ Rate limits define the maximum number of requests that can be made to an API wit
 - Reset Time: The time at which the rate limit window resets and the request count is cleared.
 
 
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Parapluie
+    participant Backend
+
+    Client->>Parapluie: HTTP GET /v1/resourceA
+    Note over Client,Parapluie: Include headers with Authorization: Bearer api_key_xxx
+
+    alt Within rate limit
+        Parapluie->>Backend: Forward request to backend
+        Note over Parapluie,Backend: Add headers x-api-key: api_key_xxx
+        Backend-->>Parapluie: Response data
+        Parapluie-->>Client: Response data
+    else Exceeds rate limit
+        Parapluie-->>Client: HTTP 429 Too Many Requests
+        Note over Parapluie,Client: Rate limit exceeded. Retry after reset time
+    end
+
+    Note over Parapluie: Rate Limit = 1000 requests/hour
+
+    Parapluie->>Parapluie: Track request count and reset time
+    Note over Parapluie: Reset request count every hour
+
+```
+
+
 ## Rate Limits Management
 
 **Prerequisite :**
