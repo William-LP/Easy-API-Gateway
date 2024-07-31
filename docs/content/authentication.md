@@ -1,6 +1,7 @@
 ---
 title: Authentication
 weight: 2
+breadcrumbs: false
 draft: false
 ---
 
