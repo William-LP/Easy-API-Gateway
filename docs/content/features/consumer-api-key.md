@@ -13,22 +13,25 @@ It must be included in every request to Parapluie, formatted as the header: `{ A
 
 You can assign various [rate limits](/features/rate-limiting) to yourConsumer API Key. These keys can be distributed to your customers for use with your API, or used directly in your frontend application to safeguard your backend infrastructure.
 
-## Prerequisite
+## Consumer API Key management
 
+**Prerequisite :**
 Before performing any of the following action you must have :
 - A parapluie [root token](/authentication)
 
-## Key management
-
-For sake of documentation clarity, parapluie's root token has been exported as an environement variable :
+{{< callout emoji="🔧" >}}
+For sake of documentation's clarity, parapluie's root token has been exported as an environement variable :
  `export PARAPLUIE_ROOT_TOKEN=<root_token_xxx>`
+{{< /callout >}}
+
+
 
 ### Add a Consumer API keys
 
 {{< tabs items="cURL" >}}
   {{< tab >}}
   ```bash
-  curl -X POST https://parapluie.io/api-keys/create \ 
+  curl -X POST https://parapluie.io/consumer-api-key/create \ 
     --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}' \
     --data '{"name":"api key for consumer XYZ"}'
   ```
@@ -56,7 +59,7 @@ For sake of documentation clarity, parapluie's root token has been exported as a
   {{< tab >}}
   
 ```bash
-  curl -X GET https://parapluie.io/api-keys \ 
+  curl -X GET https://parapluie.io/consumer-api-key \ 
     --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}'
 ```
 
@@ -66,13 +69,13 @@ This will list the API keys with theirs `id`, `name`, `createdAt` and `lastUpdat
 {
   "apiKeys" : [
       {
-      "id":"xxx",
+      "consumerApiKeyId":"xxx",
       "name":"direct access for consumer XYZ",
       "createdAt":"2024-07-30T16:20:45Z",
       "lastUpdated": "2024-07-31T12:00:00Z",
       },
       {
-      "id":"abc",
+      "consumerApiKeyId":"abc",
       "name":"Frontend app",
       "createdAt":"2024-07-28T15:42:10Z",
       "lastUpdated": "2024-07-28T15:42:10Z",
@@ -83,18 +86,16 @@ This will list the API keys with theirs `id`, `name`, `createdAt` and `lastUpdat
   ```
     {{< /tab >}}
 
-
-
 {{< /tabs >}}
 
 
-### Consumer API key report
+### Consumer API key details
 
 {{< tabs items="cURL" >}}
   {{< tab >}}
   ```bash
   API_KEY_ID="xxx"
-  curl -X GET https://parapluie.io/api-keys/$API_KEY_ID \
+  curl -X GET https://parapluie.io/consumer-api-key/$API_KEY_ID \
     --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}'
   ```
 
@@ -102,8 +103,8 @@ This will list the API keys with theirs `id`, `name`, `createdAt` and `lastUpdat
 
   ```json
 {
-  "id":"xxx",
-  "name":"my api key",
+  "consumerApiKeyId":"xxx",
+  "name":"Consumer API key",
   "secret":"@Str0nGS€cr3T",
   "createdAt":"2024-07-30T16:20:45Z",
   "lastUpdated": "2024-07-31T12:00:00Z",
@@ -161,7 +162,7 @@ This will list the API keys with theirs `id`, `name`, `createdAt` and `lastUpdat
   {{< tab >}}
   ```bash
   API_KEY_ID="xxx"
-  curl -X DELETE https://parapluie.io/api-keys/$API_KEY_ID \
+  curl -X DELETE https://parapluie.io/consumer-api-key/$API_KEY_ID \
     --header '{"Authorization": "Bearer $PARAPLUIE_ROOT_TOKEN"}'
   ```
 
@@ -169,8 +170,8 @@ A confirmation message will be returned :
 
   ```json
 {
-"id":"xxx",
-"message":"API key has been successfully deleted",
+"consumerApiKeyId":"xxx",
+"message":"Consumer API key has been successfully deleted",
 }
   ```
   {{< /tab >}}

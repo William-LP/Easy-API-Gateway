@@ -10,7 +10,7 @@ It is essential to distinguish between the Parapluie Root Token and a Consumer A
 
 ## Parapluie Root Token
 
-This token is provided for users to interact with Parapluie's API, allowing them to create and manage Parapluie resources such as rate limits or Consumer API keys. 
+The Parapluie Root Token is used for administrative actions within the Parapluie platform, such as creating or managing resources, like rate limits or Consumer API Keys.
 
 ## Consumer API Key
 
