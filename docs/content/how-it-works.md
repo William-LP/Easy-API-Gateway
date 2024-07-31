@@ -70,10 +70,3 @@ Finally your API get into action ! This is the part your code do something, like
 ## 5. Parapluie send the data back to Consumer A
 
 The fetched data is then forwarded to **Consumer A**.
-
-
-
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-  </script>
