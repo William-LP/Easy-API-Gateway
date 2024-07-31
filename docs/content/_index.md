@@ -27,7 +27,7 @@ Designed with simplicity in mind, it provides out-of-the-box features and flexib
 
 {{< callout type="info" >}}
   Parapluie is in active development.
-  Do you have a question or feedback? Please [open an issue](https://github.com/William-LP/paraluie/issues)!
+  Do you have a question or feedback? Please [open an issue](https://github.com/William-LP/parapluie/issues)!
 {{< /callout >}}
 
 ## Next
