@@ -1,14 +1,17 @@
 ---
-title: API Keys
+title: Consumer API Key
 draft: false
 weight: 1
 ---
 
-Parapluie simplifies the management of your API keys.
+Parapluie simplifies the management of your Consumer API keys.
 
-An API key is a confidential token that must be included in every request to Parapluie, formatted as the header: `{ Authorization: Bearer api_key_xxx }`.
+A Consumer API key is a confidential token that is use in all request that are made from Consumer to Parapluie's proxy. [Read more here](/how-it-works).
 
-You can assign various [rate limits](/features/rate-limiting) to your API keys. These keys can be distributed to your customers for use with your API, or used directly in your frontend application to safeguard your backend infrastructure.
+
+It must be included in every request to Parapluie, formatted as the header: `{ Authorization: Bearer api_key_xxx }`.
+
+You can assign various [rate limits](/features/rate-limiting) to yourConsumer API Key. These keys can be distributed to your customers for use with your API, or used directly in your frontend application to safeguard your backend infrastructure.
 
 ## Prerequisite
 
@@ -20,7 +23,7 @@ Before performing any of the following action you must have :
 For sake of documentation clarity, parapluie's root token has been exported as an environement variable :
  `export PARAPLUIE_ROOT_TOKEN=<root_token_xxx>`
 
-### Add an API keys
+### Add a Consumer API keys
 
 {{< tabs items="cURL" >}}
   {{< tab >}}
@@ -47,7 +50,7 @@ For sake of documentation clarity, parapluie's root token has been exported as a
 {{< /tabs >}}
 
 
-### List API keys
+### List Consumer API keys
 
 {{< tabs items="cURL" >}}
   {{< tab >}}
@@ -85,7 +88,7 @@ This will list the API keys with theirs `id`, `name`, `createdAt` and `lastUpdat
 {{< /tabs >}}
 
 
-### API key report
+### Consumer API key report
 
 {{< tabs items="cURL" >}}
   {{< tab >}}
@@ -152,7 +155,7 @@ This will list the API keys with theirs `id`, `name`, `createdAt` and `lastUpdat
 
 {{< /tabs >}}
 
-### Delete an API keys
+### Delete a Consumer API key
 
 {{< tabs items="cURL" >}}
   {{< tab >}}

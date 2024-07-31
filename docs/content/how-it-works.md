@@ -36,7 +36,7 @@ Parapluie->>+Consumer A:data
   "userId": "foo"
   }
 ```
-`Authorization` value is an [API key]() used by Parapluie when processing the query.
+`Authorization` value is an [Consumer API key](/features/consumer-api-key) used by Parapluie when processing the query.
 
 Excepted `Authorization`, all headers will be forwarded AS-IS to your API (in our example `userId` header).
 
