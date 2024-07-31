@@ -13,7 +13,7 @@ menu:
         type: search
     # - name: GitHub
     #   weight: 3
-    #   url: "https://github.com/William-LP/Easy-API-Gateway"
+    #   url: "https://github.com/William-LP/paraluie"
     #   params:
     #     icon: github
 
@@ -46,7 +46,7 @@ params:
     enable: true
     type: giscus
     giscus:
-      repo: William-LP/Easy-API-Gateway
+      repo: William-LP/parapluie
       repoId: R_kgDOMUQfpA
       category: General
       categoryId: DIC_kwDOMUQfpM4CgyxH
@@ -54,7 +54,7 @@ params:
 
   editURL:
     enable: true
-    base: "https://github.com/William-LP/Easy-API-Gateway/edit/main/docs/content"      
+    base: "https://github.com/William-LP/parapluie/edit/main/docs/content"      
 
 
 module:
