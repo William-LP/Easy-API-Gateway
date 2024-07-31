@@ -36,7 +36,7 @@ Parapluie->>+Consumer A:data
   "userId": "foo"
   }
 ```
-`Authorization` value is an [Consumer API key](/features/consumer-api-key) used by Parapluie when processing the query.
+`Authorization` value is an [Consumer API key](/parapluie/features/consumer-api-key) used by Parapluie when processing the query.
 
 Excepted `Authorization`, all headers will be forwarded AS-IS to your API (in our example `userId` header).
 
@@ -61,7 +61,7 @@ In this example we will suppose no cache exist.
 
 When Parapluie forwards a query to your backend API, it will request the same route that was asked by **Consumer A**, here `/v1/ressourceA`. 
 
-Headers will also be forwarded, with the exception of `Authorization` : the value of this header is replaced with a secret key that only parapluie and your API know. This is to prevent **Consumer A** to directly query your API resources ([read here why](/motivation)) 
+Headers will also be forwarded, with the exception of `Authorization` : the value of this header is replaced with a secret key that only parapluie and your API know. This is to prevent **Consumer A** to directly query your API resources ([read here why](/parapluie/motivation)) 
 
 ## 4. your-api.com send the data back to parapluie
 

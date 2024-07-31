@@ -6,18 +6,18 @@ weight: 1
 
 Parapluie simplifies the management of your Consumer API keys.
 
-A Consumer API key is a confidential token that is use in all request that are made from Consumer to Parapluie's proxy. [Read more here](/how-it-works).
+A Consumer API key is a confidential token that is use in all request that are made from Consumer to Parapluie's proxy. [Read more here](/parapluie/how-it-works).
 
 
 It must be included in every request to Parapluie, formatted as the header: `{ Authorization: Bearer api_key_xxx }`.
 
-You can assign various [rate limits](/features/rate-limiting) to yourConsumer API Key. These keys can be distributed to your customers for use with your API, or used directly in your frontend application to safeguard your backend infrastructure.
+You can assign various [rate limits](/parapluie/features/rate-limiting) to yourConsumer API Key. These keys can be distributed to your customers for use with your API, or used directly in your frontend application to safeguard your backend infrastructure.
 
 ## Consumer API Key management
 
 **Prerequisite :**
 Before performing any of the following action you must have :
-- A parapluie [root token](/authentication)
+- A parapluie [root token](/parapluie/authentication)
 
 {{< callout emoji="🔧" >}}
 For sake of documentation's clarity, parapluie's root token has been exported as an environement variable :

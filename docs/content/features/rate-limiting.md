@@ -25,8 +25,8 @@ Rate limits define the maximum number of requests that can be made to an API wit
 **Prerequisite :**
 
 Before performing any of the following action you must have :
-- A parapluie [root token](/authentication)
-- A [Consumer API Key](/features/consumer-api-key)
+- A parapluie [root token](/parapluie/authentication)
+- A [Consumer API Key](/parapluie/features/consumer-api-key)
 
 
 {{< callout emoji="🔧" >}}
@@ -61,7 +61,7 @@ Command's output :
 }
   ```
 
-- **id** is a custom string that will identified the rate limit plan. This will be used to match a plan to a [Consumer API Key](/features/consumer-api-key) further on.
+- **id** is a custom string that will identified the rate limit plan. This will be used to match a plan to a [Consumer API Key](/parapluie/features/consumer-api-key) further on.
 - **description** can be anything you would like to help you describe what's the rate limit plan about.
 - **limit** is the number of request to allow within a specified time period.
 - **period** is the time window for the rate limit to apply. 
@@ -73,7 +73,7 @@ In our example a maximum of 1000 requests per hour can be made.
 
 ### Applying Rate Limits to Consumer API Key
 
-When you have created a rate limit plan, you can then bind it to a [Consumer API Key](/features/consumer-api-key).
+When you have created a rate limit plan, you can then bind it to a [Consumer API Key](/parapluie/features/consumer-api-key).
 
 {{< tabs items="cURL" >}}
   {{< tab >}}
