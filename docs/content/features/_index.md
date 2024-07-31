@@ -16,7 +16,7 @@ Explore the following sections to learn how to use Parapluie:
 
 {{< cards >}}
   {{< card link="api-keys" title="API Keys" icon="key" >}}
-  {{< card link="authentication" title="Authentication" icon="user-group" >}}
+  <!-- {{< card link="authentication" title="Authentication" icon="user-group" >}} -->
   {{< card link="rate-limiting" title="Rate Limiting" icon="pause" >}}
   {{< card link="cache" title="Cache" icon="duplicate" >}}
   {{< card link="custom-domain" title="Custom Domain" icon="home" >}}
