@@ -1,6 +1,6 @@
 ## URLs
 
-https://william-lp.github.io/Easy-API-Gateway/
+https://william-lp.github.io/parapluie/
 
 
 ## Hugo useful commands
