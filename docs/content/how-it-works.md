@@ -7,179 +7,73 @@ breadcrumbs: false
 
 ## Parapluie is a proxy
 
-Therefore, it will intercept all requests made to your APIs and forwarding them back to your application if necessary.
 
-![architecture](/archi.png)
+<!-- ![architecture](/archi.png) -->
 
-## 2 extra HTTP requests at most
+```mermaid
+sequenceDiagram
+autonumber
+Consumer A->>+Parapluie:HTTP GET https://parapluie.io/v1/ressourceA 
+note over Consumer A,Parapluie:headers : {Authorization : Bearer token_xxx, userId: foo}
+    loop Processing
+        Parapluie->>Parapluie: Making sure this request should be forwarded to your-api.com
+    end
+    
+Parapluie->>+Your API:https://your-api.com/v1/ressourceA 
+note over Parapluie, Your API:headers : {x-api-key : api_key_xxx, userId: foo}
 
-In case of a query to be forwarded to your app, this will add two extra HTTP query
-
-1. **Hugo Modules (Recommended)**: The simplest and recommended method. [Hugo modules](https://gohugo.io/hugo-modules/) let you pull in the theme directly from its online source. Theme is downloaded automatically and managed by Hugo.
-
-2. **Git Submodule**: Alternatively, add Hextra as a [Git Submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules). The theme is downloaded by Git and stored in your project's `themes` folder.
-
-### Setup Hextra as Hugo module
-
-#### Prerequisites
-
-Before starting, you need to have the following software installed:
-
-- [Hugo (extended version)](https://gohugo.io/installation/)
-- [Git](https://git-scm.com/)
-- [Go](https://go.dev/)
-
-#### Steps
-
-{{% steps %}}
-
-### Initialize a new Hugo site
-
-```shell
-hugo new site my-site --format=yaml
+Your API->>+Parapluie:data
+Parapluie->>+Consumer A:data
 ```
 
-### Configure Hextra theme via module
+## 1. Consumer send a request to Parapluie
 
-```shell
-# initialize hugo module
-cd my-site
-hugo mod init github.com/username/my-site
+**Consumer A** sends a request to `https://parapluie.io/v1/ressourceA` with some headers : 
 
-# add Hextra theme
-hugo mod get github.com/imfing/hextra
+```json
+{
+  "Authorization" : "Bearer token_xxx", 
+  "userId": "foo"
+  }
 ```
+`Authorization` value is an [API key]() used by Parapluie when processing the query.
 
-Configure `hugo.yaml` to use Hextra theme by adding the following:
+Excepted `Authorization`, all headers will be forwarded AS-IS to your API (in our example `userId` header).
 
-```yaml
-module:
-  imports:
-    - path: github.com/imfing/hextra
-```
+## 2. Parapluie process the request
 
-### Create your first content pages
+**Parapluie** starts by processing the `Authorization` token :
 
-Create new content page for the home page and the documentation page:
+- Identifying the user - *who do you claim to be ?*
+- Authenticating the user - *prove you're the one you claim to be ?*
+- Authorizing the user - *what rules apply to you ?*
 
-```shell
-hugo new content/_index.md
-hugo new content/docs/_index.md
-```
+Once user has been authenticated, *Parapluie* checks what rules applies to this consumer :
+- Is the requested data cached ?
+- Is this consumer rate limited ? 
+- Does the rate limit apply to this query ?
 
-### Preview the site locally
+Once rules have been processed, data can either be sent back directly to **Consumer A** if cached, or the request can be forwarded to **your-api.com**. 
 
-```shell
-hugo server --buildDrafts --disableFastRender
-```
+In this example we will suppose no cache exist.
 
-Voila, your new site preview is available at `http://localhost:1313/`.
+## 3. Parapluie forward request to your-api.com
 
-{{% /steps %}}
+When Parapluie forwards a query to your backend API, it will request the same route that was asked by **Consumer A**, here `/v1/ressourceA`. 
 
+Headers will also be forwarded, with the exception of `Authorization` : the value of this header is replaced with a secret key that only parapluie and your API know. This is to prevent **Consumer A** to directly query your API resources ([read here why](/motivation)) 
 
-{{% details title="How to update theme?" %}}
+## 4. your-api.com send the data back to parapluie
 
-To update all Hugo modules in your project to their latest versions, run the following command:
+Finally your API get into action ! This is the part your code do something, like fetching some data from a database for example. This data is then sent back to Parapluie.
 
-```shell
-hugo mod get -u
-```
+## 5. Parapluie send the data back to Consumer A
 
-To update Hextra to the [latest released version](https://github.com/imfing/hextra/releases), run the following command:
-
-```shell
-hugo mod get -u github.com/imfing/hextra
-```
-
-See [Hugo Modules](https://gohugo.io/hugo-modules/use-modules/#update-all-modules) for more details.
-
-{{% /details %}}
-
-### Setup Hextra as Git submodule
-
-#### Prerequisites
-
-Before starting, you need to have the following software installed:
-
-- [Hugo (extended version)](https://gohugo.io/installation/)
-- [Git](https://git-scm.com/)
-
-#### Steps
-
-{{% steps %}}
-
-### Initialize a new Hugo site
-
-```shell
-hugo new site my-site --format=yaml
-```
-
-### Add Hextra theme as a Git submodule
-
-```shell
-git submodule add https://github.com/imfing/hextra.git themes/hextra
-```
-
-Configure `hugo.yaml` to use Hextra theme by adding the following:
-
-```yaml
-theme: hextra
-```
-
-### Create your first content pages
-
-Create new content page for the home page and the documentation page:
-
-```shell
-hugo new content/_index.md
-hugo new content/docs/_index.md
-```
-
-### Preview the site locally
-
-```shell
-hugo server --buildDrafts --disableFastRender
-```
-
-Your new site preview is available at `http://localhost:1313/`.
-
-{{% /steps %}}
+The fetched data is then forwarded to **Consumer A**.
 
 
-When using [CI/CD](https://en.wikipedia.org/wiki/CI/CD) for Hugo website deployment, it's essential to ensure that the following command is executed before running the `hugo` command.
 
-```shell
-git submodule update --init
-```
-
-Failure to run this command results in the theme folder not being populated with Hextra theme files, leading to a build failure.
-
-
-{{% details title="How to update theme?" %}}
-
-To update all submodules in your repository to their latest commits, run the following command:
-
-```shell
-git submodule update --remote
-```
-
-To update Hextra to the latest commit, run the following command:
-
-```shell
-git submodule update --remote themes/hextra
-```
-
-See [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) for more details.
-
-{{% /details %}}
-
-## Next
-
-Explore the following sections to start adding more contents:
-
-{{< cards >}}
-  {{< card link="../guide/organize-files" title="Organize Files" icon="document-duplicate" >}}
-  {{< card link="../guide/configuration" title="Configuration" icon="adjustments" >}}
-  {{< card link="../guide/markdown" title="Markdown" icon="markdown" >}}
-{{< /cards >}}
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
