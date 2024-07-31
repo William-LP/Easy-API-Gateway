@@ -1,4 +1,4 @@
-baseURL: https://example.org/
+baseURL: https://william-lp.github.io/parapluie/
 title: Parapluie
 
 menu:
@@ -39,7 +39,7 @@ params:
     logo:
       path: images/emojione-umbrella.svg
       dark: images/emojione-umbrella.svg
-      link: /
+      link: /parapluie
       # width: 40
       # height: 20
   comments:
