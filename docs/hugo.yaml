@@ -56,7 +56,17 @@ params:
     enable: true
     base: "https://github.com/William-LP/parapluie/edit/main/docs/content"      
 
+markup:
+  # allow raw html
+  goldmark:
+    renderer:
+      unsafe: true
 
+  # enable hextra syntax highlight
+  highlight:
+    noClasses: false
+
+    
 module:
   imports:
     - path: github.com/imfing/hextra
